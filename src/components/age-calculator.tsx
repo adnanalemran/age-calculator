@@ -41,12 +41,12 @@ export function AgeCalculator() {
   };
 
   return (
-    <Card className="w-[400px] mx-auto mt-10">
+    <Card className="w-[90%] max-w-[400px] mx-auto mt-4 sm:mt-10 px-2 sm:px-4">
       <CardHeader>
-        <CardTitle className="text-2xl font-bold text-center">Age Calculator</CardTitle>
+        <CardTitle className="text-xl sm:text-2xl font-bold text-center">Age Calculator</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           <DatePicker
             date={birthDate}
             setDate={setBirthDate}
@@ -80,18 +80,18 @@ export function AgeCalculator() {
               <div className="text-center text-lg font-semibold">
                 {targetDate ? "Age at target date:" : "Current age:"}
               </div>
-              <div className="grid grid-cols-3 gap-4 text-center">
-                <div className="p-4 bg-primary/10 rounded-lg">
-                  <div className="text-2xl font-bold text-primary">{age.years}</div>
-                  <div className="text-sm text-muted-foreground">Years</div>
+              <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center">
+                <div className="p-2 sm:p-4 bg-primary/10 rounded-lg">
+                  <div className="text-xl sm:text-2xl font-bold text-primary">{age.years}</div>
+                  <div className="text-xs sm:text-sm text-muted-foreground">Years</div>
                 </div>
-                <div className="p-4 bg-primary/10 rounded-lg">
-                  <div className="text-2xl font-bold text-primary">{age.months}</div>
-                  <div className="text-sm text-muted-foreground">Months</div>
+                <div className="p-2 sm:p-4 bg-primary/10 rounded-lg">
+                  <div className="text-xl sm:text-2xl font-bold text-primary">{age.months}</div>
+                  <div className="text-xs sm:text-sm text-muted-foreground">Months</div>
                 </div>
-                <div className="p-4 bg-primary/10 rounded-lg">
-                  <div className="text-2xl font-bold text-primary">{age.days}</div>
-                  <div className="text-sm text-muted-foreground">Days</div>
+                <div className="p-2 sm:p-4 bg-primary/10 rounded-lg">
+                  <div className="text-xl sm:text-2xl font-bold text-primary">{age.days}</div>
+                  <div className="text-xs sm:text-sm text-muted-foreground">Days</div>
                 </div>
               </div>
             </div>
