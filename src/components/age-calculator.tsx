@@ -4,12 +4,11 @@ import { useState } from "react";
 import { differenceInYears, differenceInMonths, differenceInDays } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { DatePicker } from "@/components/date-picker";
 
 export function AgeCalculator() {
-  const [birthDate, setBirthDate] = useState("");
-  const [targetDate, setTargetDate] = useState("");
+  const [birthDate, setBirthDate] = useState<Date>();
+  const [targetDate, setTargetDate] = useState<Date>();
   const [age, setAge] = useState<{
     years: number;
     months: number;
@@ -19,8 +18,8 @@ export function AgeCalculator() {
   const calculateAge = () => {
     if (!birthDate) return;
 
-    const birth = new Date(birthDate);
-    const target = targetDate ? new Date(targetDate) : new Date();
+    const birth = birthDate;
+    const target = targetDate || new Date();
 
     // Validate dates
     if (birth > target) {
@@ -36,8 +35,8 @@ export function AgeCalculator() {
   };
 
   const resetCalculator = () => {
-    setBirthDate("");
-    setTargetDate("");
+    setBirthDate(undefined);
+    setTargetDate(undefined);
     setAge(null);
   };
 
@@ -48,30 +47,20 @@ export function AgeCalculator() {
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="birthdate">Birth Date</Label>
-            <Input
-              id="birthdate"
-              type="date"
-              value={birthDate}
-              onChange={(e) => setBirthDate(e.target.value)}
-              className="w-full"
-            />
-          </div>
+          <DatePicker
+            date={birthDate}
+            setDate={setBirthDate}
+            label="Birth Date"
+          />
 
-          <div className="space-y-2">
-            <Label htmlFor="targetdate">Target Date (Optional)</Label>
-            <Input
-              id="targetdate"
-              type="date"
-              value={targetDate}
-              onChange={(e) => setTargetDate(e.target.value)}
-              className="w-full"
-            />
-            <p className="text-sm text-muted-foreground">
-              Leave empty to calculate age until today
-            </p>
-          </div>
+          <DatePicker
+            date={targetDate}
+            setDate={setTargetDate}
+            label="Target Date (Optional)"
+          />
+          <p className="text-sm text-muted-foreground">
+            Leave empty to calculate age until today
+          </p>
 
           <div className="flex gap-2">
             <Button onClick={calculateAge} className="flex-1">
